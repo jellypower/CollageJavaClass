@@ -20,14 +20,21 @@ public class MouserMotionPanel extends JPanel{
 		setPreferredSize(new Dimension(600,600));
 		setBackground(Color.white);
 		
+		pt1 = new Point();
+		pt2 = new Point();
+		
 		myListener = new DrawListener();
 		addMouseListener(myListener);
 		addMouseMotionListener(myListener);
 	}
 	
 	
-	public void paintCompoenet(Graphics g) {
+	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
+		Graphics2D page2 = (Graphics2D)g;
+		page2.setStroke(new BasicStroke(10));
+		
 		g.drawLine(pt1.x, pt1.y, pt2.x, pt2.y);
 	}
 	
@@ -54,14 +61,12 @@ public class MouserMotionPanel extends JPanel{
 		@Override
 		public void mousePressed(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			System.out.println("in");
 			pt1 = arg0.getPoint();
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			System.out.println("out");
 			pt2 = arg0.getPoint();
 			repaint();
 		}
@@ -69,6 +74,8 @@ public class MouserMotionPanel extends JPanel{
 		@Override
 		public void mouseDragged(MouseEvent e) {
 			// TODO Auto-generated method stub
+			pt2 = e.getPoint();
+			repaint();
 			
 		}
 
