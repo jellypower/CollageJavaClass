@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 
 public class MouseTestPanel extends JPanel{
 	
+	private static final boolean Point = false;
 	private int size;
 	private Point pt;
 	private DrawListener dl ;
