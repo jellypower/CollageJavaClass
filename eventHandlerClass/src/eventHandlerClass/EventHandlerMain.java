@@ -9,7 +9,7 @@ public class EventHandlerMain {
 		JFrame frame = new JFrame("");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		MouseTestPanel primary = new MouseTestPanel();
+		MouserMotionPanel primary = new MouserMotionPanel();
 		frame.getContentPane().add(primary);
 		
 		frame.pack();
