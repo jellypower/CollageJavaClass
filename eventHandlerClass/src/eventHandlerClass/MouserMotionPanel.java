@@ -41,9 +41,38 @@ public class MouserMotionPanel extends JPanel{
 		Graphics2D page2 = (Graphics2D)g;
 		page2.setStroke(new BasicStroke(10));
 		
-		g.drawLine(draggedData.pt1.x,draggedData.pt1.y, draggedData.pt2.x, draggedData.pt2.y);
+		/*g.drawRect(draggedData.pt1.x, draggedData.pt1.y,
+				draggedData.pt2.x-draggedData.pt1.x, 
+				draggedData.pt2.y-draggedData.pt1.y);*/
+		
+		makeRect(g,draggedData.pt1,draggedData.pt2);
 		for(Mouse2Data iter: mouse2DataList)
-		g.drawLine(iter.pt1.x,iter.pt1.y, iter.pt2.x, iter.pt2.y);
+			makeRect(g,iter.pt1,iter.pt2);
+		//g.drawRect(iter.pt1.x,iter.pt1.y, iter.pt2.x-iter.pt1.x, iter.pt2.y-iter.pt1.y);
+	}
+	
+	private void makeRect(Graphics g, Point pt1, Point pt2) {
+		
+		int x,y,width,height;
+		
+		if(pt1.x>pt2.x) {
+			x=pt2.x;
+			width = pt1.x-pt2.x;
+		}
+		else {
+			x=pt1.x;
+			width = pt2.x-pt1.x;
+		}
+		if(pt1.y>pt2.y) {
+			y=pt2.y;
+			height = pt1.y-pt2.y;
+		}
+		else {
+			y=pt1.y;
+			height = pt2.y-pt1.y;
+		}
+		
+		g.drawRect(x, y, width, height);
 	}
 	
 	private class DrawListener implements MouseListener, MouseMotionListener{
@@ -77,6 +106,7 @@ public class MouserMotionPanel extends JPanel{
 			// TODO Auto-generated method stub
 			draggedData.pt2 = arg0.getPoint();
 			mouse2DataList.add(new Mouse2Data(draggedData));
+			
 			repaint();
 		}
 
